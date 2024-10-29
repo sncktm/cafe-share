@@ -13,12 +13,16 @@
   <body>
     <header>
       <div class="header-logo">
-        <%= link_to("CafeShare", "/") %>
+        <% if @current_user %>
+          <%= link_to("CafeShare", "/posts/index") %>
+        <% else %>
+          <%= link_to("CafeShare", "/") %>
+        <% end %>
       </div>
       <ul class="header-menus">
-        <% if session[:user_id] %>
+        <% if @current_user %>
           <li>
-            ログイン中:<%= session[:user_id] %>
+            <%= link_to(@current_user.name, "/users/#{@current_user.id}") %>
           </li>
           <li>
           <%= link_to("投稿一覧", "/posts/index") %>
@@ -30,9 +34,6 @@
             <%= link_to("ログアウト", "/logout", data: {turbo_method: :delete})%>
           </li>
         <% else %>
-        <li>
-          <%= link_to("CafeShareとは", "/about") %>
-        </li>
         <li>
           <%= link_to("新規登録", "/signup") %>
         </li>
