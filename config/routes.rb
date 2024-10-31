@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'signup' => "users#new"
   post 'users/create' => "users#create"
   get 'users/:id' => "users#show"
+  get "users/:id/likes" => "users#likes"
 
   get 'posts/index'
   get 'posts/new' => "posts#new"
@@ -13,6 +14,9 @@ Rails.application.routes.draw do
   get 'posts/:id/edit' => "posts#edit"
   post 'posts/:id/update' => "posts#update"
   post 'posts/:id/destroy' => "posts#destroy"
+
+  post 'likes/:post_id/create' => "likes#create"
+  delete 'likes/:post_id/destroy' => "likes#destroy"
 
   get '/' => "home#top"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

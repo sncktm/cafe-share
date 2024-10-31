@@ -7,6 +7,7 @@ class PostsController < ApplicationController
   def show
     @post = Post.find_by(id: params[:id])
     @user = @post.user
+    @likes_count = Like.where(post_id: @post.id).count
   end
   def new
     @post = Post.new
@@ -51,4 +52,6 @@ class PostsController < ApplicationController
       redirect_to("/posts/index")
     end
   end
+
+  
 end
