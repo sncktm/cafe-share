@@ -184,7 +184,7 @@ header {
 .form-heading {
   font-weight: 300;
   margin: 60px 0 20px;
-  font-size: 48px;
+  font-size: 40px;
   color: #bcc8d4;
 }
 
@@ -223,6 +223,10 @@ header {
   margin-top: 8px;
   margin-bottom: 0;
   float: right;
+}
+
+.form input[type="submit"]:hover {
+  background-color: #403a45;
 }
 
 .form-body:after {

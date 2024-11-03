@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user
-  before_action :ensure_correct_user, {only: [:edit, :update, :destroy]}
+  before_action :ensure_correct_user, {only: [:destroy]}
   def index
     @posts = Post.all.order(created_at: :desc)
   end
@@ -30,21 +30,7 @@ class PostsController < ApplicationController
       render("posts/new", status: :unprocessable_entity)
     end
   end
-  def edit
-    @post = Post.find_by(id: params[:id])
-  end
-  def update
-    @post = Post.find_by(id: params[:id])
-    @post.content = params[:content]
-    if @post.save
-      flash[:notice] = "投稿を編集しました"
-      redirect_to("/posts/index")
-    else
-      render("posts/edit")
-    end
 
-    
-  end
   def destroy
     @post = Post.find_by(id: params[:id])
     @post.destroy

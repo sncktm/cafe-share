@@ -13,9 +13,7 @@ Rails.application.routes.draw do
   get 'posts/new' => "posts#new"
   get 'posts/:id' => "posts#show"
   post 'posts/create' => "posts#create"
-  get 'posts/:id/edit' => "posts#edit"
-  post 'posts/:id/update' => "posts#update"
-  post 'posts/:id/destroy' => "posts#destroy"
+  delete 'posts/:id/destroy' => "posts#destroy"
 
   post 'likes/:post_id/create' => "likes#create"
   delete 'likes/:post_id/destroy' => "likes#destroy"
