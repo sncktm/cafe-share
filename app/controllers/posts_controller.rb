@@ -13,14 +13,21 @@ class PostsController < ApplicationController
     @post = Post.new
   end
   def create
-    @post = Post.new(content: params[:content],
+    @post = Post.new(cafe_name: params[:cafe_name], prefecture_id: params[:prefecture_id], content: params[:content],
     user_id: @current_user.id)
 
     if @post.save
+      if params[:image]
+        @post.image = "#{@post.id}.jpg"
+        image = params[:image]
+        File.binwrite("public/posts_images/#{@post.image}", image.read)
+        @post.save
+      end
+  
       flash[:notice] = "投稿しました"
       redirect_to("/posts/index")
     else
-      render("posts/new")
+      render("posts/new", status: :unprocessable_entity)
     end
   end
   def edit

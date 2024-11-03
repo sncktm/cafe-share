@@ -19,7 +19,7 @@
 }
 
 .post-user-name a:hover {
-  color: #3ecdc6;
+  color: #5b5561;
 }
 
 .post-left {
@@ -96,6 +96,10 @@
 }
 
 /* posts/new ================================ */
+.form-main div {
+  padding: 10px 0px;
+}
+
 .posts-new textarea {
   font-size: 20px;
   padding: 10px;

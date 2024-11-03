@@ -1,6 +1,6 @@
 <div class="main posts-new">
   <div class="container">
-    <h1 class="form-heading">投稿する</h1>
+    <h1 class="form-heading">投稿</h1>
     <%= form_tag("/posts/create") do %>
       <div class="form">
         <div class="form-body">
@@ -9,7 +9,23 @@
             <%= message %>
           </div>
           <% end %>
-          <textarea name="content"><%= @post.content %></textarea>
+          <div class="form-main">
+            <div>
+              <label for="cafe_name">カフェ名</label>
+              <input name="cafe_name" id="cafe_name" value="<%= @post.cafe_name %>">
+            </div>
+            <div>
+              <label for="prefectures">都道府県</label>
+              <%= select_tag 'prefecture_id', options_from_collection_for_select(Prefecture.all, :id, :name, @post.prefecture_id), {include_blank: "---"} %>
+            </div>
+            <div>
+              <label for="image">画像</label>
+              <input type="file" name="image" id="image" value="<%= @post.image %>">
+            </div>
+            <div>
+              <textarea name="content"><%= @post.content %></textarea>
+            </div>
+          </div>
           <input type="submit" value="投稿">
         </div>
       </div>
