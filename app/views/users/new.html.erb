@@ -10,13 +10,13 @@
           </div>
           <% end %>
 
-          <%= form_tag("/users/create") do %>
+          <%= form_tag("/users/create", {multipart: true}) do %>
           <label for="name">ユーザー名</label>
           <input name="name" id="name" value="<%= @user.name %>">
           <label for="email">メールアドレス</label>
           <input name="email" id="email" value="<%= @user.email %>">
-          <label for="location">所在地</label>
-          <input name="location" id="location" value="<%= @user.location %>">
+          <label for="prefecture_id">所在地</label>
+          <%= select_tag 'prefecture_id', options_from_collection_for_select(Prefecture.all, :id, :name), {include_blank: "---"} %>
           <label for="password">パスワード</label>
           <input type="password" id="password" name="password" value="<%= @user.password %>">
           <input type="submit" value="新規登録">

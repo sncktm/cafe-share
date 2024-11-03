@@ -20,10 +20,9 @@ class PostsController < ApplicationController
       if params[:image]
         @post.image = "#{@post.id}.jpg"
         image = params[:image]
-        File.binwrite("public/posts_images/#{@post.image}", image.read)
+        File.binwrite("public/post_images/#{@post.image}", image.read)
         @post.save
       end
-  
       flash[:notice] = "投稿しました"
       redirect_to("/posts/index")
     else

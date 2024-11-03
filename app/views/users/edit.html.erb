@@ -18,7 +18,7 @@
           <p>メールアドレス</p>
           <input name="email" value="<%= @user.email %>">
           <p>所在地</p>
-          <input name="location" value="<%= @user.location %>">
+          <%= select_tag 'prefecture_id', options_from_collection_for_select(Prefecture.all, :id, :name), {include_blank: "---"} %>
           <input type="submit" value="保存">
         <% end %>
     </div>

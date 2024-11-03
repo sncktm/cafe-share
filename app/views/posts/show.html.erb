@@ -3,12 +3,13 @@
     <div class="posts-show-item">
       <div class="post-user-name">
         <img src="<%= "/user_images/#{@user.image_name}" %>">
-
         <%= link_to(@user.name, "/users/#{@user.id}") %>
       </div>
-      <p>
-        <%= @post.content %>
-      </p>
+      <h2><%= @post.cafe_name %></h2>
+      <p><%= @post.prefecture.name %></p>
+      <p><%= @post.content %></p>
+      <img src="<%= "/post_images/#{@post.image}" %>">
+
       <div class="post-time">
         <%= @post.created_at %>
       </div>
