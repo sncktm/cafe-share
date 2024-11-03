@@ -2,7 +2,19 @@ class PostsController < ApplicationController
   before_action :authenticate_user
   before_action :ensure_correct_user, {only: [:destroy]}
   def index
-    @posts = Post.all.order(created_at: :desc)
+    user_posted_cafes = Post.where(user_id: @current_user.id).pluck(:cafe_name)
+    @prefecture_id = params[:prefecture_id]
+    @status = params[:status]
+    posts = Post.all
+
+    if @prefecture_id.present?
+      posts = Post.where(prefecture_id: @prefecture_id)
+    end
+
+    if @status == "unexplored"
+      posts = posts.where.not(cafe_name: user_posted_cafes)
+    end
+    @posts = posts.order(created_at: :desc)
   end
   def show
     @post = Post.find_by(id: params[:id])

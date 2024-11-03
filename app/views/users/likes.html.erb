@@ -6,7 +6,7 @@
       <% if @user.id == @current_user.id %>
         <p><%= @user.email %></p>
       <% end %>
-      <p><%= @user.prefecture_id %></p>
+      <p><%= @user.prefecture.name %></p>
       <% if @user.id == @current_user.id %>
         <%= link_to("編集", "/users/#{@user.id}/edit") %>
       <% end %>
