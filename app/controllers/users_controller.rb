@@ -27,7 +27,7 @@ class UsersController < ApplicationController
     @user = User.find_by(id: params[:id])
     @user.name = params[:name]
     @user.email = params[:email]
-    @user.location = params[:location]
+    @user.prefecture_id = params[:prefecture_id]
     if params[:image]
       @user.image_name = "#{@user.id}.jpg"
       image = params[:image]
@@ -65,7 +65,22 @@ class UsersController < ApplicationController
   end
 
   def likes
+    user_posted_cafes = Post.where(user_id: @current_user.id).pluck(:cafe_name)
+    @prefecture_id = params[:prefecture_id]
+    @status = params[:status]
     @user = User.find_by(id: params[:id])
-    @likes = Like.where(user_id: @user.id)
+    
+    @likes = Like.where(user_id: @user.id).includes(:post)
+  
+    if @prefecture_id.present?
+      @likes = @likes.joins(:post).where(posts: { prefecture_id: @prefecture_id })
+    end
+  
+    if @status == "unexplored"
+      @likes = @likes.joins(:post).where.not(posts: { cafe_name: user_posted_cafes })
+    end
+  
+    @likes_count = @likes.count
   end
+  
 end

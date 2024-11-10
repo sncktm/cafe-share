@@ -16,9 +16,20 @@
       <li><%= link_to("投稿", "/users/#{@user.id}") %></li>
       <li class="active"><%= link_to("いいね!", "/users/#{@user.id}/likes") %></li>
     </ul>
-    
+
+    <p><%= @likes_count %>件</p>
+
+    <%= form_with url: "/users/#{@user.id}/likes", method: :get, local: true do |form| %>
+      <%= select_tag :prefecture_id, options_from_collection_for_select(Prefecture.all, :id, :name, params[:prefecture_id]), {include_blank: "全て"} %>
+      <%= form.label :status_unexplored, "未開地" %>
+      <%= form.radio_button :status, "unexplored", id: "status_unexplored" %>
+      <%= form.label :status_all, "すべて" %>
+      <%= form.radio_button :status, "all", id: "status_all" %>
+      <%= submit_tag "絞り込む" %>
+    <% end %>
+
     <% @likes.each do |like| %>
-      <% post = Post.find_by(id: like.post_id) %>
+      <% post = like.post %>
       
       <div class="posts-index-item">
         <div class="post-left">
