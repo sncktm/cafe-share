@@ -1,15 +1,29 @@
 /* posts/index ================================ */
+.posts-index {
+  display: flex;
+  justify-content: center;
+}
+.posts-index article {
+  width: 70%;
+}
+.posts-index aside {
+  width: 30%;
+}
 .posts-index-item {
   padding: 20px 30px;
   background-color: white;
   overflow: hidden;
   box-shadow: 0 2px 6px #c1ced7;
+  border-radius: 8px;
+}
+.posts-index .posts-index-item {
+  margin: 10px;
 }
 
 .post-left img {
   width: 50px;
   height: 50px;
-  border-radius: 40%;
+  border-radius: 50%;
   box-shadow: 0 2px 6px #c1ced7;
   object-fit: cover;
 }
@@ -34,6 +48,108 @@
   text-align: left;
 }
 
+.filter {
+  position: sticky;
+  top: 24px;
+  background: white;
+  border-radius: 8px;
+  padding: 24px;
+  height: fit-content;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-top: 60px;
+}
+
+.filter-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.filter form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.filter select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #333;
+  background: white;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.filter select:hover {
+  border-color: #999;
+}
+
+.filter select:focus {
+  outline: none;
+  border-color: #666;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.05);
+}
+
+.radio-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.radio-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.radio-option input[type="radio"] {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #ddd;
+  border-radius: 50%;
+  margin: 0;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.radio-option input[type="radio"]:checked {
+  border-color: #4a4a4a;
+  background: #4a4a4a;
+  box-shadow: inset 0 0 0 3px white;
+}
+
+.radio-option label {
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
+}
+
+.filter-submit {
+  margin-top: 8px;
+}
+
+.filter-submit input[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  background: #5b5561;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.filter-submit input[type="submit"]:hover {
+  background: #403a45;
+}
+
 /* posts/show ================================ */
 .posts-show form {
   display: inline;
@@ -44,12 +160,13 @@
   background-color: white;
   box-shadow: 0 2px 6px #c1ced7;
   overflow: hidden;
+  border-radius: 8px;
 }
 
 .post-user-name img {
   width: 60px;
   height: 60px;
-  border-radius: 40%;
+  border-radius: 50%;
   box-shadow: 0 2px 6px #c1ced7;
   vertical-align: middle;
   object-fit: cover;
@@ -100,15 +217,41 @@
   padding: 10px 0px;
 }
 
-.posts-new textarea {
-  font-size: 20px;
-  padding: 10px;
-  min-height: 140px;
-  border: 1px solid rgb(216, 218, 223);
-  resize: none;
-}
-
 .posts-new textarea::-webkit-input-placeholder {
   font-size: 24px;
   opacity: 0.5;
+}
+
+.form-main input[type="text"],
+.form-main input[type="file"],
+.form-main select,
+.form-main textarea {
+  padding: 10px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+  width: 100%;
+  border-radius: 4px;
+}
+
+.form-main textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+input[type="file"] {
+  padding: 8px;
+}
+
+input[type="file"]::-webkit-file-upload-button {
+  padding: 8px 16px;
+  background: #5b5561;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+input[type="file"]::-webkit-file-upload-button:hover {
+  background: #403a45;
 }

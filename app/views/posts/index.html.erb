@@ -1,30 +1,49 @@
 <div class="main posts-index">
-  <%= form_with url: "/posts/index", method: :get, local: true do |form| %>
-  <%= select_tag :prefecture_id, options_from_collection_for_select(Prefecture.all, :id, :name, params[:prefecture_id]), {include_blank: "全て"} %>
-  <%= form.label :status_unexplored, "未開地" %>
-  <%= form.radio_button :status, "unexplored", id: "status_unexplored" %>
-  <%= form.label :status_all, "すべて" %>
-  <%= form.radio_button :status, "all", id: "status_all" %>
-  <%= submit_tag "絞り込む" %>
-  <% end %>
-  <div class="container">
-    <% @posts.each do |post| %>
-      <div class="posts-index-item">
-        <div class="post-left">
-          <img src="<%= "/user_images/#{post.user.image_name}" %>">
-        </div> 
-        <div class="post-right">
-          <div class="post-user-name">
-            <%= link_to(post.user.name, "/users/#{post.user.id}") %>
+  <aside>
+    <div class="filter">
+      <h2 class="filter-title">絞り込み検索</h2>
+      <%= form_with url: "/posts/index", method: :get, local: true do |form| %>
+        <%= select_tag :prefecture_id, 
+            options_from_collection_for_select(Prefecture.all, :id, :name, params[:prefecture_id]), 
+            {include_blank: "都道府県を選択"} %>
+        
+        <div class="radio-options">
+          <div class="radio-option">
+            <%= form.radio_button :status, "unexplored", id: "status_unexplored" %>
+            <%= form.label :status_unexplored, "未開地" %>
           </div>
-          <%= link_to("/posts/#{post.id}") do %>
-          <h2><%= post.cafe_name %></h2>
-          <p><%= post.prefecture.name %></p>
-          <p><%= post.content %></p>
-          <img src="<%= "/post_images/#{post.image}" %>">
-          <% end %>
+          <div class="radio-option">
+            <%= form.radio_button :status, "all", id: "status_all" %>
+            <%= form.label :status_all, "すべて" %>
+          </div>
         </div>
-      </div>
-    <% end %>
-  </div>
+
+        <div class="filter-submit">
+          <%= submit_tag "絞り込む" %>
+        </div>
+      <% end %>
+    </div>
+  </aside>
+  <article>
+    <div class="container">
+      <% @posts.each do |post| %>
+        <div class="posts-index-item">
+          <div class="post-left">
+            <img src="<%= "/user_images/#{post.user.image_name}" %>">
+          </div> 
+          <div class="post-right">
+            <div class="post-user-name">
+              <%= link_to(post.user.name, "/users/#{post.user.id}") %>
+            </div>
+            <%= link_to("/posts/#{post.id}") do %>
+            <h2><%= post.cafe_name %></h2>
+            <p><%= post.prefecture.name %></p>
+            <p><%= post.content %></p>
+            <img src="<%= "/post_images/#{post.image}" %>">
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </article>
 </div>
