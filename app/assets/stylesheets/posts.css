@@ -3,12 +3,7 @@
   display: flex;
   justify-content: center;
 }
-.posts-index article {
-  width: 70%;
-}
-.posts-index aside {
-  width: 30%;
-}
+
 .posts-index-item {
   padding: 20px 30px;
   background-color: white;
