@@ -1,11 +1,17 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
+
 development:
+  <<: *default
   url: "postgresql://postgres.haqbvekexzybcfnuybzh:DGBJwRAzNP4Ny2@aws-0-ap-northeast-1.pooler.supabase.com:6543/postgres"
-  pool: 5
 
 test:
+  <<: *default
   url: "postgresql://postgres.haqbvekexzybcfnuybzh:DGBJwRAzNP4Ny2@aws-0-ap-northeast-1.pooler.supabase.com:6543/postgres"
-  pool: 5
 
 production:
+  <<: *default
   url: "postgresql://postgres.haqbvekexzybcfnuybzh:DGBJwRAzNP4Ny2@aws-0-ap-northeast-1.pooler.supabase.com:6543/postgres"
-  pool: 5
