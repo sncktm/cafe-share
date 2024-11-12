@@ -1,24 +1,18 @@
-# README
+# ◆CafeShare
+訪れたカフェを共有し合い、新たなカフェを見つけることができるサービスです
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+## ◆サービスURL
+https://cafeshare.onrender.com
 
-* Ruby version
 
-* System dependencies
+## ◆開発の背景
+カフェ巡りが好きで、SNSを使って新しいカフェを探すことが多いのですが、もっと簡単に知らないカフェを見つけられるサービスがあれば便利だと思い、開発しました。
 
-* Configuration
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## ◆使用技術
+- Ruby
+- Rails
+- HTML
+- CSS
+- PostgreSQL
