@@ -157,7 +157,10 @@ GEM
     nio4r (2.7.4)
     nokogiri (1.17.2-x64-mingw-ucrt)
       racc (~> 1.4)
+    nokogiri (1.17.2-x86_64-linux)
+      racc (~> 1.4)
     ostruct (0.6.1)
+    pg (1.5.9)
     pg (1.5.9-x64-mingw-ucrt)
     psych (5.1.2)
       stringio
@@ -248,6 +251,7 @@ GEM
 
 PLATFORMS
   x64-mingw-ucrt
+  x86_64-linux
 
 DEPENDENCIES
   active_hash

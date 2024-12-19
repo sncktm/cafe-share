@@ -57,8 +57,6 @@ gem "active_hash"
 
 gem 'dotenv'
 
-gem 'dotenv-rails'
-
 gem 'dotenv-rails', groups: [:development, :test]
 
 
@@ -86,8 +84,4 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 
-end
-
-group :production do
-  gem "pg"
 end
