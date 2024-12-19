@@ -2,13 +2,13 @@
   <div class="container">
     <div class="posts-show-item">
       <div class="post-user-name">
-        <img src="<%= "/user_images/#{@user.image_name}" %>">
+        <%= cl_image_tag("#{@user.image_name}") %>
         <%= link_to(@user.name, "/users/#{@user.id}") %>
       </div>
       <h2><%= @post.cafe_name %></h2>
       <p><%= @post.prefecture.name %></p>
       <p><%= @post.content %></p>
-      <img src="<%= "/post_images/#{@post.image}" %>">
+      <%= cl_image_tag("#{@post.image_url}", width: 400) %>
 
       <div class="post-time">
         <%= @post.created_at %>

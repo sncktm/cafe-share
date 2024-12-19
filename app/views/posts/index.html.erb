@@ -29,7 +29,7 @@
       <% @posts.each do |post| %>
         <div class="posts-index-item">
           <div class="post-left">
-            <img src="<%= "/user_images/#{post.user.image_name}" %>">
+            <%= cl_image_tag("#{post.user.image_name}") %>
           </div> 
           <div class="post-right">
             <div class="post-user-name">
@@ -39,7 +39,6 @@
             <h2><%= post.cafe_name %></h2>
             <p><%= post.prefecture.name %></p>
             <p><%= post.content %></p>
-            <%# <img src="<%= post.image_url %>
             <%= cl_image_tag("#{post.image_url}", width: 400) %>
             <% end %>
           </div>

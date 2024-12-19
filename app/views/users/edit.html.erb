@@ -10,17 +10,22 @@
           </div>
         <% end %>
 
-        <%= form_tag("/users/#{@user.id}/update", {multipart: true}) do %>
+        <%= form_with url:"/users/#{@user.id}/update", method: :patch, local: true, html: { multipart: true } do |form| %>
           <p>ユーザー名</p>
-          <input name="name" value="<%= @user.name %>">
+          <%= form.text_field :name, value: @user.name %>
+
           <p>プロフィール画像</p>
-          <input name="image" type="file">
+          <%= form.file_field :image %>
+
           <p>メールアドレス</p>
-          <input name="email" value="<%= @user.email %>">
+          <%= form.email_field :email, value: @user.email %>
+
           <p>所在地</p>
-          <%= select_tag 'prefecture_id', options_from_collection_for_select(Prefecture.all, :id, :name), {include_blank: "---"} %>
-          <input type="submit" value="保存">
+          <%= form.collection_select :prefecture_id, Prefecture.all, :id, :name, { include_blank: "---" } %>
+
+          <%= form.submit "保存" %>
         <% end %>
+      </div>
     </div>
   </div>
 </div>

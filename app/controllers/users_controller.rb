@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     @user = User.new
   end
   def create
-    @user = User.new(name: params[:name], email: params[:email], prefecture_id: params[:prefecture_id], image_name: "default_user.png", password: params[:password])
+    @user = User.new(name: params[:name], email: params[:email], prefecture_id: params[:prefecture_id], image_name: "/user_images/default_user.png", password: params[:password])
     if @user.save
       session[:user_id] = @user.id
       flash[:notice] = "ユーザー登録が完了しました"
@@ -25,22 +25,26 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find_by(id: params[:id])
+    
     @user.name = params[:name]
     @user.email = params[:email]
     @user.prefecture_id = params[:prefecture_id]
+    
     if params[:image]
-      @user.image_name = "#{@user.id}.jpg"
-      image = params[:image]
-      File.binwrite("public/user_images/#{@user.image_name}", image.read)
+      uploaded_file = params[:image]
+      result = Cloudinary::Uploader.upload(uploaded_file.path)
+      
+      @user.image_name = result['url']
     end
+  
     if @user.save
       flash[:notice] = "ユーザー情報を編集しました"
       redirect_to("/users/#{@user.id}")
     else
       render("users/edit", status: :unprocessable_entity)
-
     end
   end
+  
   def login_form
     
   end
