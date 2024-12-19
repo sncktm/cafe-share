@@ -59,6 +59,10 @@ gem 'dotenv'
 
 gem 'dotenv-rails'
 
+gem 'dotenv-rails', groups: [:development, :test]
+
+
+gem 'cloudinary'
 
 
 group :development, :test do

@@ -1,32 +1,32 @@
 <div class="main posts-new">
   <div class="container">
     <h1 class="form-heading">新規投稿</h1>
-    <%= form_tag("/posts/create", {multipart: true}) do %>
+    <%= form_with url: '/posts/create', method: :post, local: true, multipart: true do |form| %>
       <div class="form">
         <div class="form-body">
           <% @post.errors.full_messages.each do |message| %>
-          <div class="form-error">
-            <%= message %>
-          </div>
+            <div class="form-error">
+              <%= message %>
+            </div>
           <% end %>
           <div class="form-main">
             <div>
-              <label for="cafe_name">カフェ名</label>
-              <input name="cafe_name" id="cafe_name" value="<%= @post.cafe_name %>">
+              <%= form.label :cafe_name, 'カフェ名' %>
+              <%= form.text_field :cafe_name, value: @post.cafe_name %>
             </div>
             <div>
-              <label for="prefectures">都道府県</label>
-              <%= select_tag 'prefecture_id', options_from_collection_for_select(Prefecture.all, :id, :name, @post.prefecture_id), {include_blank: "---"} %>
+              <%= form.label :prefecture_id, '都道府県' %>
+              <%= form.select :prefecture_id, options_from_collection_for_select(Prefecture.all, :id, :name, @post.prefecture_id), { include_blank: "---" } %>
             </div>
             <div>
-              <label for="image">画像</label>
-              <input type="file" name="image" id="image" value="<%= @post.image %>">
+              <%= form.label :image, '画像' %>
+              <%= form.file_field :image %>
             </div>
             <div>
-              <textarea name="content"><%= @post.content %></textarea>
+              <%= form.text_area :content, value: @post.content %>
             </div>
           </div>
-          <input type="submit" name="button" value="投稿">
+          <%= form.submit '投稿' %>
         </div>
       </div>
     <% end %>
