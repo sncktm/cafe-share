@@ -4,6 +4,7 @@
 
 ## ◆サービスURL
 https://cafeshare.onrender.com
+初回は実行に時間がかかります。
 
 
 ## ◆開発の背景
