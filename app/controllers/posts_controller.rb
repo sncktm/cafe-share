@@ -34,8 +34,7 @@ class PostsController < ApplicationController
           uploaded_file = params[:image]
           result = Cloudinary::Uploader.upload(uploaded_file.path)
   
-          # Cloudinaryにアップロードされた画像のURLを保存
-          @post.image_url = result['url']  # 画像URLをpostのimage_urlカラムに保存する場合
+          @post.image_url = result['url']
           @post.save
         end
   
