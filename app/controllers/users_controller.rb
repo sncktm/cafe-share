@@ -59,9 +59,10 @@ class UsersController < ApplicationController
       @error_message = "メールアドレスまたはパスワードが間違っています"
       @email = params[:email]
       @password = params[:password]
-      render("users/login_form")
+      render("users/login_form", status: :unprocessable_entity)
     end
   end
+  
   def logout
     session[:user_id] = nil
     flash[:notice] = "ログアウトしました"
